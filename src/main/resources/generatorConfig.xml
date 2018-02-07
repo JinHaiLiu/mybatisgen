@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 数据库驱动 -->
+	<!-- <classPathEntry location="mysql-connector-java-5.1.32-bin.jar"/> -->
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+	
+		<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+		<property name="javaFileEncoding" value="UTF-8"></property>
+		
+		<commentGenerator type="org.mybatis.generator.MyCommentGenerator">
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@远程ip地址或localhost:1521:orcl" 
+			userId="用户名" password="密码"> 针对oracle数据库 <property name="remarksReporting" 
+			value="true"></property> </jdbcConnection> -->
+
+		<!--数据库链接URL，用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/travel"
+			userId="root" password="12345">
+			<!-- 针对oracle数据库 -->
+			<!-- <property name="remarksReporting" value="true"></property> -->
+			<!-- 针对mysql数据库 -->
+			<property name="useInformationSchema" value="true" />
+		</jdbcConnection>
+		
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.travel.basic.entity"
+			targetProject="D:/workspace_myself/travel/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="com.travel.basic.mapper"
+			targetProject="D:/workspace_myself/travel/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.travel.basic.dao" targetProject="D:/workspace_myself/travel/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
+		<!-- 
+		 说明：tableName：数据表名
+		 	 domainObjectName：生成的实体名
+		 	 enableCountByExample enableUpdateByExample enableDeleteByExample enableSelectByExample ...
+		 	  这些属性表示是否生成帮助类，true表示生成，false表示不生成
+		 	   比如：enableInsert = true, 在生成dao层类中会有insert方法 以及在mapper对应的 insert元素标签
+		 -->
+		<table tableName="hotplace" domainObjectName="Hotplace"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableInsert="false" enableSelectByPrimaryKey="true"
+			enableDeleteByPrimaryKey="false" enableUpdateByPrimaryKey="false">
+			</table>
+	</context>
+	
+</generatorConfiguration>  
